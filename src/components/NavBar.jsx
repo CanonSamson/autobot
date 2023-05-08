@@ -6,17 +6,17 @@ const NavBar = () => {
             <div className="  flex justify-between items-center px-5 py-2 ">
                 <div className=" flex gap-2 items-center">
                     <Logo className="" />
-                    <ul className=" flex gap-2">
+                    {/* <ul className=" flex gap-2">
                         <li><p>Quick Tools</p></li>
                         <li>Object</li>
                         <li>Pricing</li>
                         <li>Team</li>
-                    </ul>
+                    </ul> */}
                 </div>
-                <div className=" gap-2 flex">
+                {/* <div className=" gap-2 flex">
                     <button>Log In </button>
                     <button className=" bg-primary  w-[120px] py-2 rounded-full">Register</button>
-                </div>
+                </div> */}
             </div>
         </nav>
     );
