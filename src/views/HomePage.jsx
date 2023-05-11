@@ -19,7 +19,7 @@ const HomePage = () => {
     return (
         <div className="text-white">
             {/* Add the hero background image */}
-            <img src={herobg} className="w-full h-screen object-cover absolute" alt="" />
+            <img src={herobg} className="w-full  h-screen object-cover absolute" alt="" />
 
             {/* Add the navigation bar */}
             <NavBar />
@@ -35,13 +35,13 @@ const HomePage = () => {
                 >
                     <motion.h1
                         variants={Anime}
-                        className="indent-0 tracking-tighter text-9xl font-black mx-auto text-center"
+                        className="indent-0 text-4xl tracking-tighter sm:text-9xl font-black mx-auto sm:text-center"
                     >
                         CAD-GPT <strong className="text-primary"></strong>
                     </motion.h1>
                     <motion.p
                         variants={Anime}
-                        className="text-center px-[200px] text-4xl mb-5"
+                        className="text-center sm:px-[200px] sm:text-4xl mb-5"
                     >
                         AI-Powered Text To <strong className="text-primary">3D</strong>, All On The Web.
                     </motion.p>
@@ -57,7 +57,7 @@ const HomePage = () => {
                         <Link to='/waitlist'>
                             <motion.button
                                 variants={Anime}
-                                className="hover:scale-95 duration-200 border-2 shadow shadow-primary border-primary text-white rounded-full w-[200px] text-center text-[16px] py-5"
+                                className="hover:scale-95 duration-200 border-2 shadow shadow-primary text-[12px] border-primary text-white rounded-full w-[150px] sm:w-[200px] text-center sm:text-[16px] py-3 sm:py-5"
                             >
                                 Join Wait List
                             </motion.button>

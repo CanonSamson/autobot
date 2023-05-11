@@ -7,6 +7,8 @@ import { motion } from "framer-motion";
 import herobg from "../assets/herobg.png"
 import { Logo } from "../assets/svg";
 import NavBar from "../components/NavBar";
+import { db } from "../firebase-config"
+import { setDoc, doc, collection, addDoc } from "firebase/firestore"
 
 
 const WaitListPage = () => {
@@ -17,8 +19,18 @@ const WaitListPage = () => {
 
 
     // Function to handle form submission
-    const onSubmit = async () => {
-        setTrySubmit(false);
+    const onSubmit = async (values) => {
+        setTrySubmit(true);
+        console.log(values)
+
+        try {
+            await addDoc(collection(db, "users"), values)
+            setTrySubmit(false)
+
+        } catch (error) {
+            console.log(error.message)
+            setTrySubmit(false)
+        }
     };
 
     // Initializing formik hooks and setting up form validation schema
@@ -44,7 +56,7 @@ const WaitListPage = () => {
                         initial={{ y: -100 }}
                         animate={{ y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="relative w-[25%] bg-white p-5 rounded text-gray flex flex-col border border-[#bbbb]"
+                        className="relative max-w-[400px] bg-white p-5 rounded text-gray flex flex-col border border-[#bbbb]"
                     >
                         <h4 className="uppercase">Wait List</h4>
                         <form onSubmit={handleSubmit}>

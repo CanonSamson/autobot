@@ -5,7 +5,7 @@ const NavBar = () => {
         <nav  className="text-white text-[14px] fixed top-0 right-0 w-full z-30">
             <div className="  flex justify-between items-center px-5 py-2 ">
                 <div className=" flex gap-2 items-center">
-                    <Logo className="" />
+                    <Logo className="w-[24px]" />
                     {/* <ul className=" flex gap-2">
                         <li><p>Quick Tools</p></li>
                         <li>Object</li>
