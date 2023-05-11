@@ -56,7 +56,7 @@ const WaitListPage = () => {
                         initial={{ y: -100 }}
                         animate={{ y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="relative max-w-[400px] bg-white p-5 rounded text-gray flex flex-col border border-[#bbbb]"
+                        className="relative min-w-[300px] max-w-[400px] bg-white p-5 rounded text-gray flex flex-col border border-[#bbbb]"
                     >
                         <h4 className="uppercase">Wait List</h4>
                         <form onSubmit={handleSubmit}>
