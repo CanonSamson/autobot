@@ -17,7 +17,7 @@ const HomePage = () => {
 
     // Render the HTML elements and Framer Motion components
     return (
-        <div className="text-white">
+        <div className="text-white bg-gray ">
             {/* Add the hero background image */}
             <img src={herobg} className="w-full  h-screen object-cover absolute" alt="" />
 
@@ -62,6 +62,16 @@ const HomePage = () => {
                                 Join Wait List
                             </motion.button>
                         </Link>
+
+                        <Link to='/ai'>
+                            <motion.button
+                                variants={Anime}
+                                className="hover:scale-95 duration-200  text-[12px] bg-primary text-white rounded-full w-[150px] sm:w-[200px] text-center sm:text-[16px] py-3 sm:py-5"
+                            >
+                                Generate
+                            </motion.button>
+                        </Link>
+
                     </motion.div>
                 </motion.div>
             </header>
