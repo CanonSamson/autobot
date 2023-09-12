@@ -1,5 +1,5 @@
 // Importing necessary icons from react-icons/all module
-import { FiCamera, FiDownloadCloud } from "react-icons/all";
+import { FiCamera, FiDownloadCloud } from "react-icons/fi";
 
 // Functional component AiSpace
 const AiSpace = () => {

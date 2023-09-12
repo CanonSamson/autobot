@@ -54,12 +54,12 @@ const HomePage = () => {
                         className="flex gap-4 items-center justify-center"
                     >
                         {/* Add a button to join the waitlist */}
-                        <Link to='/waitlist'>
+                        <Link to=''>
                             <motion.button
                                 variants={Anime}
                                 className="hover:scale-95 duration-200 border-2 shadow shadow-primary text-[12px] border-primary text-white rounded-full w-[150px] sm:w-[200px] text-center sm:text-[16px] py-3 sm:py-5"
                             >
-                                Join Wait List
+                              Learn More
                             </motion.button>
                         </Link>
 
