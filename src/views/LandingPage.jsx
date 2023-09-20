@@ -6,7 +6,7 @@ import { FiChevronRight } from "react-icons/fi";
 import AiSpace from "./AiSpace";
 import { motion } from "framer-motion"
 import { useState } from "react"
-
+import {AiOutlineLoading3Quarters} from "react-icons/ai"
 
 const LandingPage = () => {
   // Define animation object
@@ -19,16 +19,19 @@ const LandingPage = () => {
   const [output, setOutput] = useState({});
   const [called, setCalled] = useState(false);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false)
 
-  const BASE_URL = 'http://inaam.pythonanywhere.com';
+  const maxRetries = 3;
+  let retries = 0;
+
+
 
   const generatePrompt = async () => {
     setCalled(false)
-
-
+    setLoading(true)
     try {
       console.log("connecting...");
-      const response = await fetch(`${BASE_URL}/generate`, {
+      const response = await fetch("http://inaam.pythonanywhere.com/generate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,51 +48,52 @@ const LandingPage = () => {
       const responseData = await response.json();
       console.log(responseData);
       setOutput(responseData)
+      setLoading(false)
+
     } catch (error) {
-      alert("failed...");
-      // Handle any errors here
-      console.error(error);
+      if (retries < maxRetries) {
+        // Retry the request after a delay
+        setTimeout(() => {
+          retries++;
+          generatePrompt();
+          setLoading(false)
+
+        }, 200000); // Adjust the delay as needed
+      } else {
+        setLoading(false)
+
+        // Handle the error after max retries
+        console.error("Max retries exceeded:", error);
+      }
     }
   };
 
-  // Function to call the /get_gif_url endpoint
-  const getGifUrl = async () => {
+  const fetchData = async () => {
     try {
-      const response = await fetch(`${BASE_URL}/get_gif_url`);
+      const response = await fetch("your_api_endpoint");
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      // Handle the response data here
-      const responseData = await response.json();
-      console.log(responseData);
-      return responseData;
+      const data = await response.json();
+      // Process the data
+
     } catch (error) {
-      // Handle any errors here
-      console.error(error);
-    }
-  };
-
-  // Function to call the /get_obj_url endpoint
-  const getObjUrl = async () => {
-    try {
-      const response = await fetch(`${BASE_URL}/get_obj_url`);
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+      if (retries < maxRetries) {
+        // Retry the request after a delay
+        setTimeout(() => {
+          retries++;
+          fetchData();
+        }, 1000); // Adjust the delay as needed
+      } else {
+        // Handle the error after max retries
+        console.error("Max retries exceeded:", error);
       }
-
-      // Handle the response data here
-      const responseData = await response.json();
-      console.log(responseData);
-      return responseData;
-
-    } catch (error) {
-      // Handle any errors here
-      console.error(error);
     }
   };
+
+
 
 
   // Return JSX to render the landing page
@@ -109,12 +113,15 @@ const LandingPage = () => {
             <input type="text"
               placeholder="Start Typing Any Word"
               value={userInput}
+              disabled={loading ? true : false}
               onChange={(e) => setUserInput(e.target.value)}
               className="rounded-l-full pl-5 flex-1 focus:outline-none text-[14px]" />
             <button onClick={generatePrompt} className=" bg-primary text-white rounded-full w-[120px] 
                         flex items-center justify-between p-2 ">
               Generate
-              <FiChevronRight />
+              {
+                !loading ? <FiChevronRight /> : <AiOutlineLoading3Quarters className=" animate-spin" />
+              }
             </button>
           </motion.div>
         </motion.div>
@@ -133,7 +140,7 @@ const LandingPage = () => {
       </div>
 
       {/* Render the AI space component */}
-      {called && <AiSpace gif={output.gif_url} />}
+      {called && <AiSpace gif={output.gif_url} obj={output.obj_url} />}
     </div>
   );
 }

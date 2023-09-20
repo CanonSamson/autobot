@@ -6,7 +6,9 @@ import LandingPage from './views/LandingPage.jsx'
 import HomePage from './views/HomePage'
 import WaitListPage from './views/WaitListPage'
 
+import { init } from '@sapi/js-sdk';
 
+init({ sapiId: 'api-replicate-com-svlmwu' }); // TODO: use your own Sapi ID
 
 export const Router = createBrowserRouter([
   {
