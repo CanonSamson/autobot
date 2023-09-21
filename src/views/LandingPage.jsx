@@ -31,7 +31,7 @@ const LandingPage = () => {
     setLoading(true)
     try {
       console.log("connecting...");
-      const response = await fetch("http://inaam.pythonanywhere.com/generate", {
+      const response = await fetch("https://inaam.pythonanywhere.com/generate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
