@@ -217,3 +217,38 @@ const CADGPTPage = () => {
 
 // Export the HomePage component
 export default HomePage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//goo
